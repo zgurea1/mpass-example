@@ -43,7 +43,6 @@ class App {
   private initializeMiddlewares() {
     this.app.use(morgan(LOG_FORMAT, { stream }));
     this.app.use(cors());
-    this.app.set('trust proxy', 1);
     this.app.use(
       session({
         name: 'session',

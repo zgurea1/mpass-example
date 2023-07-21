@@ -13,12 +13,12 @@ class MpassController {
     try {
       samlStrategy.logout(req as any, (err, requestUrl) => {
         if (err) {
-          return console.error(err);
+          return next(err);
         }
         const sessionID = req.session.id;
         req.sessionStore.destroy(sessionID, err2 => {
           if (err2) {
-            return console.error(err2);
+            return next(err2);
           }
         });
 
@@ -38,9 +38,9 @@ class MpassController {
       }
       req.session.destroy(err => {
         if (err) {
-          return console.error(err);
+          next(err);
         }
-        res.redirect('https://localhost:9000/#/');
+        res.redirect('http://localhost:3000/v1/mpass/check');
       });
     });
   };
